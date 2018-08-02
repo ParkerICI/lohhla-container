@@ -3,7 +3,7 @@
 # License file: 
 # Licensed for evaluation, educational, and not-for-profit use only.
 #  novoalign -d /mnt/example-out/example.patient.hlaFasta.nix -f /mnt/example-out/example_tumor_sorted/example_tumor_sorted.chr6region.1.fastq /mnt/example-out/example_tumor_sorted/example_tumor_sorted.chr6region.2.fastq -F STDFQ -R 0 -r All 9999 -o SAM -o FullNW
-# Starting at Thu Aug  2 16:17:32 2018
+# Starting at Thu Aug  2 16:32:26 2018
 # Interpreting input files as Sanger FASTQ.
 # Index Build Version: 3.7
 #   Hash length:    9
@@ -14,10 +14,10 @@
 #   Unique Alignment:     2328 (97.7%)
 #       Multi Mapped:       56 ( 2.3%)
 #   No Mapping Found:        0 ( 0.0%)
-#       Elapsed Time: 0.348 (secs.)
+#       Elapsed Time: 0.347 (secs.)
 #           CPU Time: 0.34 (secs.)
 # Fragment Length Distribution
 #	From	To	Count
 #	240	254	814
 # Mean   247, Std Dev   0.0
-# Done at Thu Aug  2 16:17:32 2018
+# Done at Thu Aug  2 16:32:26 2018
