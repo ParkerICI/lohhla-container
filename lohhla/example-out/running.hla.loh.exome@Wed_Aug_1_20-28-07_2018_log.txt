@@ -1,0 +1,14 @@
+
+####################### 
+####### Inputs ######## 
+#######################
+full.patient	example	
+workDir	/mnt/example-out	
+hlaPath	/lohhla/example-file/hlas	
+normalBAMfile	/lohhla/example-file/bam/example_BS_GL_sorted.bam	
+BAMDir	/lohhla/example-file/bam	
+HLAfastaLoc	/lohhla/repository/data/example.patient.hlaFasta.fa	
+CopyNumLoc	/lohhla/repository/lohhla/example-file/solutions.txt	
+GATKDir	/picard.jar	
+NOVODir	/home/polysolver/binaries/novoalign	
+

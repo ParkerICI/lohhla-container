@@ -1,0 +1,63 @@
+
+####################### 
+####### Inputs ######## 
+#######################
+full.patient	example	
+workDir	/mnt/example-out	
+hlaPath	/lohhla/example-file/hlas	
+normalBAMfile	/lohhla/example-file/bam/example_BS_GL_sorted.bam	
+BAMDir	/lohhla/example-file/bam	
+HLAfastaLoc	/lohhla/data/example.patient.hlaFasta.fa	
+CopyNumLoc	/lohhla/repository/lohhla/example-file/solutions.txt	
+GATKDir	/home/polysolver/binaries	
+NOVODir	/novocraft	
+
+
+generate patient reference fasta at Wed Aug  1 23:35:26 2018
+
+
+nix file for patient reference fasta at Wed Aug  1 23:35:26 2018
+
+novoindex /mnt/example-out/example.patient.hlaFasta.nix /mnt/example-out/example.patient.hlaFasta.fa
+
+create kmer file at Wed Aug  1 23:35:26 2018
+
+
+extract HLA possible reads from BAM file at Wed Aug  1 23:35:26 2018
+
+samtools view -H /lohhla/example-file/bam/example_BS_GL_sorted.bam > /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6:29909037-29913661 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6:31321649-31324964 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6:31236526-31239869 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_apd_hap1 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_cox_hap2 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_dbb_hap3 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_mann_hap4 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_mcf_hap5 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_qbl_hap6 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+samtools view /lohhla/example-file/bam/example_BS_GL_sorted.bam chr6_ssto_hap7 >> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam
+
+turn into fastq at Wed Aug  1 23:35:27 2018
+
+java -jar /home/polysolver/binaries/SamToFastq.jar I=/mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.sam F=/mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.1.fastq F2=/mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.2.fastq VALIDATION_STRINGENCY=SILENT
+
+get partially matching reads and turn fished sam into fastq at Wed Aug  1 23:35:28 2018
+
+
+combine chr6 reads with fished reads at Wed Aug  1 23:35:29 2018
+
+
+align to all HLA alleles at Wed Aug  1 23:35:29 2018
+
+/novocraft/novoalign -d /mnt/example-out/example.patient.hlaFasta.nix -f /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.1.fastq /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.2.fastq -F STDFQ -R 0 -r All 9999 -o SAM -o FullNW 1> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.sam 2> /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted_BS_GL.chr6region.patient.reference.hlas.metrics
+samtools view -bS -o /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.bam /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.sam
+java -jar /home/polysolver/binaries/SortSam.jar I=/mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.bam O=/mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.bam SORT_ORDER=coordinate
+samtools rmdup /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.bam /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.noduplicates.bam
+samtools view -f 2 -b -o /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.noduplicates.filtered.bam /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.noduplicates.bam
+samtools index /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.noduplicates.filtered.bam
+
+get HLA specific SAM for allele: hla_a_01_01_01_01 at Wed Aug  1 23:35:30 2018
+
+samtools view -b -o /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.temp.hla_a_01_01_01_01.bam /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.chr6region.patient.reference.hlas.csorted.noduplicates.filtered.bam hla_a_01_01_01_01
+samtools sort /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.temp.hla_a_01_01_01_01.bam -o /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.type.hla_a_01_01_01_01.bam
+samtools index /mnt/example-out/example_BS_GL_sorted/example_BS_GL_sorted.type.hla_a_01_01_01_01.bam
