@@ -62,3 +62,4 @@ RUN wget https://github.com/broadinstitute/picard/releases/download/1.123/picard
 	mv picard-tools-1.123 picard
 
 ADD example2.sh /root/lohhla/example-file/example2.sh
+RUN pip install pandas
