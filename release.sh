@@ -24,3 +24,9 @@ sudo docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
 # push it
 sudo gcloud docker push $USERNAME/$IMAGE:latest
 sudo gcloud docker push $USERNAME/$IMAGE:$version
+
+#Print the version again
+echo "version: $version"
+echo "Container: ${USERNAME}/${IMAGE}:${version}
+
+
