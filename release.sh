@@ -27,6 +27,6 @@ sudo gcloud docker push $USERNAME/$IMAGE:$version
 
 #Print the version again
 echo "version: $version"
-echo "Container: ${USERNAME}/${IMAGE}:${version}
+echo "Container: ${USERNAME}/${IMAGE}:${version}"
 
 
