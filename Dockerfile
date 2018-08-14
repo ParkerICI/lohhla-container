@@ -51,8 +51,11 @@ ENV PATH="/bedtools2/bin:${PATH}"
 RUN git clone https://bitbucket.org/mcgranahanlab/lohhla.git && \
 	mv /lohhla /root/
 
-#We use a specific veresion of novocraft - YOU CAN ONLY USE THIS IF YOU ARE A NON_PROFIT
 ADD novocraft /novocraft
+#Novoalign IS NOT DISTRIBUTED WITH THIS CONTAINER YOU WILL NEED TO GET IT YOURSELF
+#You need to have novoalgin version 3.07.00 which we cannot distribute. You can get your version (as of 8/2/2019 
+#here: http://www.novocraft.com/support/download/ under the release 3.07.00
+
 
 ENV PATH="/novocraft:${PATH}"
 
