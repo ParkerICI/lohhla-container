@@ -68,3 +68,4 @@ ADD example2.sh /root/lohhla/example-file/example2.sh
 RUN pip install pandas
 ADD Dockerfile /Dockerfile
 ADD VERSION /VERSION
+ADD LOHHLAscript_b37.R /root/lohhla/LOHHLAscript_b37.R
