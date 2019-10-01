@@ -10,4 +10,3 @@ To test mount this folder into the container and dp
 ./example2.sh
 ```
 
-Any issues please contact Danny: dwells@parkerici.org
